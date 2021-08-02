@@ -7,10 +7,8 @@ function HomePage({ videos }) {
   return (
     <Section>
       <Grid>
-        {videos && videos.items
-          .map((video) => (
-            <VideoCard key={video.etag} video={video} />
-          ))}
+        {videos &&
+          videos.items.map((video) => <VideoCard key={video.etag} video={video} />)}
       </Grid>
     </Section>
   );

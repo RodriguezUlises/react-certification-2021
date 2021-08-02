@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 import Videocard from './Videocard.component';
 import YoutubeVideos from '../../mock/youtube-videos-mock.json';
-import { ThemeProvider } from 'styled-components';
 import { lightTheme } from '../../utils/themes';
 
 const video = YoutubeVideos.items[0];

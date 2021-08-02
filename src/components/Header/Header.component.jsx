@@ -14,10 +14,11 @@ function Header({ themeToggler, fetchVideos }) {
       <SearchInput fetchVideos={fetchVideos} />
       <RightContainer>
         <Toggle onClick={themeToggler} data-testid="Toggle">
-          { theme.colors.primary === '#FFF' ?
-            <Moon width={20} height={25} /> :
+          {theme.colors.primary === '#FFF' ? (
+            <Moon width={20} height={25} />
+          ) : (
             <Sun width={25} height={25} />
-          }
+          )}
         </Toggle>
         <ProfilePicture />
       </RightContainer>

@@ -1,5 +1,10 @@
 import React from 'react';
-import { VideoContainer, VideoThumbnail, VideoTitle, VideoDescription } from './VideoCard.styled';
+import {
+  VideoContainer,
+  VideoThumbnail,
+  VideoTitle,
+  VideoDescription,
+} from './VideoCard.styled';
 
 function Videocard({ video }) {
   const { title, description, thumbnails } = video.snippet;

@@ -20,7 +20,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <ThemeProvider theme={theme ? lightTheme : darkTheme}>
-          <Layout themeToggler={themeToggler} fetchVideos={fetchVideos} >
+          <Layout themeToggler={themeToggler} fetchVideos={fetchVideos}>
             <Switch>
               <Route exact path="/">
                 <HomePage videos={data} />

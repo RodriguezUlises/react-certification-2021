@@ -1,13 +1,22 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter} from 'react-router-dom';
 import Videocard from './Videocard.component';
 import YoutubeVideos from '../../mock/youtube-videos-mock.json';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme } from '../../utils/themes';
 
 const video = YoutubeVideos.items[0];
 
 describe('Videocard tests', () => {
   test('should render videocard', () => {
-    render(<Videocard video={video} />);
+    render(
+      <BrowserRouter>
+        <ThemeProvider theme={lightTheme}>
+          <Videocard video={video} />
+        </ThemeProvider>
+      </BrowserRouter>
+    );
     const VideoImage = screen.getByAltText('video');
     const VideoTitle = screen.getByText(video.snippet.title);
     const VideoDesc = screen.getByText(video.snippet.description);

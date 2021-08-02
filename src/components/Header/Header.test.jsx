@@ -1,9 +1,18 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme } from '../../utils/themes';
 import Header from './Header.component';
 
 beforeEach(() => {
-  render(<Header />);
+  render(
+    <BrowserRouter>
+      <ThemeProvider theme={lightTheme}>
+        <Header />
+      </ThemeProvider>
+    </BrowserRouter>
+  );
 });
 
 describe('Header tests', () => {

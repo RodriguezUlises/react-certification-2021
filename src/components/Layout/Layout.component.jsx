@@ -1,12 +1,10 @@
 import React from 'react';
 import Header from '../Header';
 
-// import './Layout.styles.css';
-
-function Layout({ children, themeToggler }) {
+function Layout({ children, themeToggler, fetchVideos }) {
   return (
     <>
-      <Header themeToggler={themeToggler} />
+      <Header themeToggler={themeToggler} fetchVideos={fetchVideos} />
       <main>{children}</main>
     </>
   );

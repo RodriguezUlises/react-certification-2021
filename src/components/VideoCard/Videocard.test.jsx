@@ -13,7 +13,12 @@ describe('Videocard tests', () => {
     render(
       <BrowserRouter>
         <ThemeProvider theme={lightTheme}>
-          <Videocard id={video.id.videoId} title={video.snippet.title} description={video.snippet.description} thumbnails={video.snippet.thumbnails} />
+          <Videocard
+            id={video.id.videoId}
+            title={video.snippet.title}
+            description={video.snippet.description}
+            thumbnails={video.snippet.thumbnails}
+          />
         </ThemeProvider>
       </BrowserRouter>
     );

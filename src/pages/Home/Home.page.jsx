@@ -9,7 +9,15 @@ function HomePage() {
     <Section>
       <Grid>
         {appContext.state.videos &&
-          appContext.state.videos.items.map((video) => <VideoCard key={video.etag} id={video.id.videoId} title={video.snippet.title} description={video.snippet.description} thumbnails={video.snippet.thumbnails} />)}
+          appContext.state.videos.items.map((video) => (
+            <VideoCard
+              key={video.etag}
+              id={video.id.videoId}
+              title={video.snippet.title}
+              description={video.snippet.description}
+              thumbnails={video.snippet.thumbnails}
+            />
+          ))}
       </Grid>
     </Section>
   );

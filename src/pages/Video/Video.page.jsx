@@ -80,7 +80,13 @@ function VideoPage() {
           <RelatedVideosContainer>
             {relatedVideos &&
               relatedVideos.items.map((video) => (
-                <VideoCard key={video.etag} id={video.id.videoId} title={video.snippet.title ? video.snippet.title : 'Sin titulo'} description={video.snippet.description} thumbnails={video.snippet.thumbnails} />
+                <VideoCard
+                  key={video.etag}
+                  id={video.id.videoId}
+                  title={video.snippet.title ? video.snippet.title : 'Sin titulo'}
+                  description={video.snippet.description}
+                  thumbnails={video.snippet.thumbnails}
+                />
               ))}
           </RelatedVideosContainer>
         )}

@@ -15,8 +15,8 @@ function SearchInput() {
   const handleChange = (e) => {
     appContext.dispatch({
       type: ACTIONS.SET_SEARCH_TERM,
-      payload: e.target.value
-    })
+      payload: e.target.value,
+    });
   };
 
   useDebounce(

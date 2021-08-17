@@ -36,7 +36,6 @@ function VideoPage() {
     return () => {
       mounted = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
@@ -81,7 +80,7 @@ function VideoPage() {
           <RelatedVideosContainer>
             {relatedVideos &&
               relatedVideos.items.map((video) => (
-                <VideoCard key={video.etag} video={video} />
+                <VideoCard key={video.etag} id={video.id.videoId} title={video.snippet.title ? video.snippet.title : 'Sin titulo'} description={video.snippet.description} thumbnails={video.snippet.thumbnails} />
               ))}
           </RelatedVideosContainer>
         )}

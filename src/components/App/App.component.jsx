@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../../utils/themes';
-import useYoutubeApi from '../../utils/hooks/useYoutubeApi';
-import AuthProvider from '../../providers/Auth';
+import { DataProvider } from '../../providers/Context/DataContext';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import VideoPage from '../../pages/Video';
@@ -15,15 +14,15 @@ import Layout from '../Layout';
 function App() {
   const [theme, setTheme] = useState(true); // true is light and false is dark
   const themeToggler = () => setTheme(!theme);
-  const { data, fetchVideos } = useYoutubeApi();
   return (
     <BrowserRouter>
-      <AuthProvider>
+      <DataProvider>
         <ThemeProvider theme={theme ? lightTheme : darkTheme}>
-          <Layout themeToggler={themeToggler} fetchVideos={fetchVideos}>
+          <Layout themeToggler={themeToggler}>
             <Switch>
               <Route exact path="/">
-                <HomePage videos={data} />
+                {/* <NotFound /> */}
+                <HomePage />
               </Route>
               <Route exact path="/login">
                 <LoginPage />
@@ -40,7 +39,7 @@ function App() {
             </Switch>
           </Layout>
         </ThemeProvider>
-      </AuthProvider>
+      </DataProvider>
     </BrowserRouter>
   );
 }

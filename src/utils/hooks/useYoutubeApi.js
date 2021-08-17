@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { youtubeClient } from '../../api/youtube.api';
+import { DataContext, ACTIONS } from '../../providers/Context/DataContext';
 
 const useYoutubeApi = () => {
-  const [data, setData] = useState(null);
+  const appContext = useContext(DataContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -16,7 +17,10 @@ const useYoutubeApi = () => {
           maxResults: 18,
         },
       });
-      setData(response.data);
+      appContext.dispatch({
+        type: ACTIONS.SET_VIDEOS,
+        payload: response.data,
+      });
     } catch (err) {
       setError(err);
     } finally {
@@ -53,7 +57,6 @@ const useYoutubeApi = () => {
   };
 
   return {
-    data,
     loading,
     error,
     fetchVideos,

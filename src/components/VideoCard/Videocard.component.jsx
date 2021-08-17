@@ -6,10 +6,9 @@ import {
   VideoDescription,
 } from './VideoCard.styled';
 
-function Videocard({ video }) {
-  const { title, description, thumbnails } = video.snippet;
+function Videocard({ id, title, description, thumbnails }) {
   return (
-    <VideoContainer to={`/video/${video.id.videoId}`}>
+    <VideoContainer to={`/video/${id}`}>
       <VideoThumbnail src={thumbnails.medium.url} alt="video" />
       <VideoTitle>{title}</VideoTitle>
       <VideoDescription>{description}</VideoDescription>

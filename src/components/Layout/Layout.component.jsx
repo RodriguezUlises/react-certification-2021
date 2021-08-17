@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from '../Header';
 
-function Layout({ children, themeToggler, fetchVideos }) {
+function Layout({ children, themeToggler }) {
   return (
     <>
-      <Header themeToggler={themeToggler} fetchVideos={fetchVideos} />
+      <Header themeToggler={themeToggler} />
       <main>{children}</main>
     </>
   );

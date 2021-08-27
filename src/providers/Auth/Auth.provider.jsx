@@ -23,19 +23,21 @@ function AuthProvider({ children }) {
     setAuthenticated(isAuthenticated);
 
     const loggedUser = storage.get('AUTH_USER');
-    setUser(loggedUser);
+    if(loggedUser !== null){
+      setUser(loggedUser);
+    }
   }, []);
 
   const login = (userInfo) => {
-    setAuthenticated(true);
     setUser(userInfo);
+    setAuthenticated(true);
     storage.set(AUTH_STORAGE_KEY, true);
     storage.set('AUTH_USER', userInfo);
   };
 
   const logout = () => {
-    setAuthenticated(false);
     setUser({});
+    setAuthenticated(false);
     storage.set(AUTH_STORAGE_KEY, false);
     storage.set('AUTH_USER', '');
   };

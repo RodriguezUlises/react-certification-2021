@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const SearchBar = styled.div`
   background-color: ${(props) => props.theme.colors.secondary};
-  height: 5vh;
-  max-height: 30px;
+  height: 7vh;
+  max-height: 35px;
   width: 45%;
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: ${(props) => props.theme.colors.text};
   transition: all 0.5s ease;
   &:hover {
@@ -34,5 +34,9 @@ export const SearchBar = styled.div`
     &:active {
       outline: none;
     }
+  }
+
+  @media (max-width: 760px) {
+    width: 70%;
   }
 `;

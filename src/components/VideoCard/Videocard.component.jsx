@@ -3,15 +3,25 @@ import {
   VideoContainer,
   VideoThumbnail,
   VideoTitle,
-  VideoDescription,
+  User,
+  Flex,
+  UploadDate,
+  ProfilePicture
 } from './VideoCard.styled';
+import { format } from 'date-fns';
 
-function Videocard({ id, title, description, thumbnails }) {
+function Videocard({ id, title, channelTitle, publishTime, thumbnails, fav }) {
   return (
-    <VideoContainer to={`/video/${id}`}>
+    <VideoContainer to={fav ? `/favorites/${id}` : `/video/${id}`}>
       <VideoThumbnail src={thumbnails.medium.url} alt="video" />
       <VideoTitle>{title}</VideoTitle>
-      <VideoDescription>{description}</VideoDescription>
+      <User>
+        <Flex>
+          <ProfilePicture />
+          {channelTitle}
+        </Flex>
+        <UploadDate>{format(Date.parse(publishTime), 'd MMM y')}</UploadDate>
+      </User>
     </VideoContainer>
   );
 }

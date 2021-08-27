@@ -6,7 +6,7 @@ export const LogoContainer = styled(Link)`
   user-select: none;
   cursor: pointer;
   color: ${(props) => props.theme.colors.text};
-  transition: all 0.5s ease;
+  transition: color 0.5s ease;
   span {
     padding: 0px 5px;
     background-color: #bf616a;
@@ -20,6 +20,45 @@ export const LogoContainer = styled(Link)`
       font-size: 0.65rem;
       top: 0;
       right: -1rem;
+    }
+  }
+
+  @media (max-width: 760px) {
+    color: transparent;
+    background-color: transparent;
+    border: 5px solid #bf616a;
+    border-radius: 25px;
+    height: 45px;
+    width: 45px;
+    position: relative;
+    transition: color 0s ease;
+    &::before {
+      content: '';
+      background-color: transparent;
+      height: 15px;
+      width: 20px;
+      border-bottom: 5px solid #bf616a;
+      border-right: 5px solid #bf616a;
+      position: absolute;
+      top: 10px;
+      left: 0px;
+      transform: rotate(35deg);
+    }
+    &::after {
+      content: '';
+      background-color: transparent;
+      height: 15px;
+      width: 18px;
+      border-bottom: 5px solid #bf616a;
+      border-right: 5px solid #bf616a;
+      position: absolute;
+      top: 12px;
+      right: 0px;
+      transform: rotate(218deg);
+    }
+
+    span {
+      display: none;
     }
   }
 `;

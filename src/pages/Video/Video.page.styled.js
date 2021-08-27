@@ -6,6 +6,15 @@ export const VideoSection = styled.div`
   display: flex;
   background-color: ${(props) => props.theme.colors.secondary};
   transition: all 0.5s ease;
+  margin-left: 5%;
+  width: 95%;
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+    margin-left: 0%;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const VideoContainer = styled.div`
@@ -16,6 +25,10 @@ export const VideoContainer = styled.div`
     height: 100%;
     border: none;
   }
+  @media (max-width: 760px) {
+    width: 100%;
+    height: 40vh;
+  }
 `;
 
 export const DetailsContainer = styled.div`
@@ -23,6 +36,9 @@ export const DetailsContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  @media (max-width: 760px) {
+    width: 100%;
+  }
 `;
 
 export const VideoInfo = styled.div`
@@ -57,6 +73,16 @@ export const VideoInfo = styled.div`
   }
 `;
 
+export const AddFav = styled.button`
+  width: 100%;
+  height: 35px;
+  background-color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.primary};
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+`;
+
 export const RelatedVideosContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -70,6 +96,7 @@ export const RelatedVideosContainer = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  padding: 0px 20px;
 `;
 
 export const ViewsContainer = styled.div`

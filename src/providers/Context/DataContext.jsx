@@ -39,8 +39,10 @@ const reducer = (state, action) => {
         favoritesVideos: fav,
       };
     }
-    case ACTIONS.REMOVE_FAVORITE_VIDEO:{
-      const filteredfav = state.favoritesVideos.filter(video => video.items[0].id !== action.payload)
+    case ACTIONS.REMOVE_FAVORITE_VIDEO: {
+      const filteredfav = state.favoritesVideos.filter(
+        (video) => video.items[0].id !== action.payload
+      );
       return {
         ...state,
         favoritesVideos: filteredfav,
@@ -78,33 +80,33 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const FavVideos = storage.get('FAVORITES');
-    if(FavVideos === null){
+    if (FavVideos === null) {
       dispatch({
         type: ACTIONS.RESTORE_FAVORITE_VIDEOS,
         payload: [],
       });
-    }else{
+    } else {
       dispatch({
         type: ACTIONS.RESTORE_FAVORITE_VIDEOS,
         payload: FavVideos,
-      })
+      });
     }
   }, []);
 
   useEffect(() => {
     const videoHis = storage.get('HISTORY');
-    if(videoHis === null){
+    if (videoHis === null) {
       dispatch({
         type: ACTIONS.RESTORE_VIDEO_HISTORY,
         payload: [],
       });
-    }else{
+    } else {
       dispatch({
         type: ACTIONS.RESTORE_VIDEO_HISTORY,
         payload: videoHis,
-      })
+      });
     }
-  }, [])
+  }, []);
 
   return (
     <DataContext.Provider value={{ state, dispatch }}>{children}</DataContext.Provider>

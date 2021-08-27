@@ -31,14 +31,14 @@ function AuthProvider({ children }) {
     setUser(userInfo);
     storage.set(AUTH_STORAGE_KEY, true);
     storage.set('AUTH_USER', userInfo);
-  }
+  };
 
   const logout = () => {
     setAuthenticated(false);
     setUser({});
     storage.set(AUTH_STORAGE_KEY, false);
     storage.set('AUTH_USER', '');
-  }
+  };
 
   return (
     <AuthContext.Provider value={{ login, logout, authenticated, user }}>

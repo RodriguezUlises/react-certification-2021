@@ -14,14 +14,14 @@ function LoginPage() {
 
   const authenticate = async (event) => {
     event.preventDefault();
-    try{
+    try {
       const user = await loginApi(username, password);
       login(user);
       history.push('/');
     } catch (err) {
       setError('Username or password incorrect');
     }
-  }
+  };
 
   return (
     <LoginSection>
@@ -30,24 +30,24 @@ function LoginPage() {
         <FormGroup>
           <label htmlFor="username">
             <strong>username </strong>
-            <input 
-              required 
-              type="text" 
+            <input
+              required
+              type="text"
               id="username"
               value={username}
-              onChange={e => setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </label>
         </FormGroup>
         <FormGroup>
           <label htmlFor="password">
             <strong>password </strong>
-            <input 
-              required 
-              type="password" 
-              id="password" 
+            <input
+              required
+              type="password"
+              id="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </label>
         </FormGroup>

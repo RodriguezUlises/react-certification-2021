@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from 'date-fns';
 import {
   VideoContainer,
   VideoThumbnail,
@@ -6,9 +7,8 @@ import {
   User,
   Flex,
   UploadDate,
-  ProfilePicture
+  ProfilePicture,
 } from './VideoCard.styled';
-import { format } from 'date-fns';
 
 function Videocard({ id, title, channelTitle, publishTime, thumbnails, fav }) {
   return (

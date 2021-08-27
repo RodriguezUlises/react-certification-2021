@@ -1,6 +1,12 @@
 import React from 'react';
 import { useTheme } from 'styled-components';
-import { Container, RightContainer, Toggle, ProfilePicture, LoggedPicture } from './Header.styled';
+import {
+  Container,
+  RightContainer,
+  Toggle,
+  ProfilePicture,
+  LoggedPicture,
+} from './Header.styled';
 import SearchInput from '../SearchInput';
 import Logo from '../Logo';
 import Sun from '../../utils/svg/Sun';
@@ -22,16 +28,13 @@ function Header({ themeToggler, fetchVideos }) {
             <Sun width={25} height={25} />
           )}
         </Toggle>
-        {authenticated ? 
-          <LoggedPicture onClick={() => logout()} >
-            <img 
-              src={user.avatarUrl} 
-              alt="logout" 
-            />
-          </LoggedPicture> 
-          : 
-          <ProfilePicture to='/login' />
-        }
+        {authenticated ? (
+          <LoggedPicture onClick={() => logout()}>
+            <img src={user.avatarUrl} alt="logout" />
+          </LoggedPicture>
+        ) : (
+          <ProfilePicture to="/login" />
+        )}
       </RightContainer>
     </Container>
   );

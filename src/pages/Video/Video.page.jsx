@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { DataContext, ACTIONS } from '../../providers/Context/DataContext';
 import { useTheme } from 'styled-components';
+import { DataContext, ACTIONS } from '../../providers/Context/DataContext';
 import VideoCard from '../../components/VideoCard';
 import useYoutubeApi from '../../utils/hooks/useYoutubeApi';
 import { storage } from '../../utils/storage';
@@ -45,30 +45,30 @@ function VideoPage({ fav }) {
   }, [id]);
 
   useEffect(() => {
-    let exist = appContext.state.favoritesVideos.find(video => {
-      if(video.items[0].id === id){
+    const exist = appContext.state.favoritesVideos.find((video) => {
+      if (video.items[0].id === id) {
         return true;
       }
     });
-    if(exist){
+    if (exist) {
       setFavoriteVideo(true);
-    }else{
+    } else {
       setFavoriteVideo(false);
     }
   }, [id]);
 
   useEffect(() => {
-    let exist = appContext.state.videoHistory.find(video => {
-      if(video?.items[0].id === id){
+    const exist = appContext.state.videoHistory.find((video) => {
+      if (video?.items[0].id === id) {
         return true;
       }
     });
-    if(exist === undefined && videoData !== null){
-      let history = storage.get('HISTORY');
-      if(history === null){
+    if (exist === undefined && videoData !== null) {
+      const history = storage.get('HISTORY');
+      if (history === null) {
         storage.set('HISTORY', [videoData]);
-      }else{
-        history.push(videoData)
+      } else {
+        history.push(videoData);
         storage.set('HISTORY', history);
       }
       appContext.dispatch({
@@ -76,8 +76,7 @@ function VideoPage({ fav }) {
         payload: videoData,
       });
     }
-    
-  }, [videoData])
+  }, [videoData]);
 
   return (
     <VideoSection>
@@ -85,7 +84,7 @@ function VideoPage({ fav }) {
         <iframe
           data-testid="iframe"
           src={`https://www.youtube.com/embed/${id}`}
-          title='video'
+          title="video"
           allowFullScreen
         />
       </VideoContainer>
@@ -115,58 +114,71 @@ function VideoPage({ fav }) {
         {selectedView === 'Info' ? (
           <VideoInfo>
             <h1>{videoData && videoData.items[0].snippet.title}</h1>
-            <AddFav onClick={() => {
-              if(favoriteVideo){
-                appContext.dispatch({
-                  type: ACTIONS.REMOVE_FAVORITE_VIDEO,
-                  payload: videoData.items[0].id,
-                });
-                storage.set('FAVORITES', storage.get('FAVORITES').filter(video => video.items[0].id !== videoData.items[0].id));
-                setFavoriteVideo(false);
-              }else{
-                appContext.dispatch({
-                  type: ACTIONS.ADD_FAVORITE_VIDEO,
-                  payload: videoData,
-                });
-                const currentVideos = storage.get('FAVORITES');
-                if(currentVideos === null){
-                  storage.set('FAVORITES', [videoData]);
-                }else{
-                  currentVideos.push(videoData);
-                  storage.set('FAVORITES', currentVideos);
+            <AddFav
+              onClick={() => {
+                if (favoriteVideo) {
+                  appContext.dispatch({
+                    type: ACTIONS.REMOVE_FAVORITE_VIDEO,
+                    payload: videoData.items[0].id,
+                  });
+                  storage.set(
+                    'FAVORITES',
+                    storage
+                      .get('FAVORITES')
+                      .filter((video) => video.items[0].id !== videoData.items[0].id)
+                  );
+                  setFavoriteVideo(false);
+                } else {
+                  appContext.dispatch({
+                    type: ACTIONS.ADD_FAVORITE_VIDEO,
+                    payload: videoData,
+                  });
+                  const currentVideos = storage.get('FAVORITES');
+                  if (currentVideos === null) {
+                    storage.set('FAVORITES', [videoData]);
+                  } else {
+                    currentVideos.push(videoData);
+                    storage.set('FAVORITES', currentVideos);
+                  }
+                  setFavoriteVideo(true);
                 }
-                setFavoriteVideo(true);
-              }
-            }}>{favoriteVideo ? 'Remove from Favorites Videos' : 'Add to Favorites Videos' }</AddFav>
+              }}
+            >
+              {favoriteVideo ? 'Remove from Favorites Videos' : 'Add to Favorites Videos'}
+            </AddFav>
             <p>{videoData && videoData.items[0].snippet.description}</p>
           </VideoInfo>
         ) : (
           <RelatedVideosContainer>
-            {fav ?
-              appContext.state.favoritesVideos.map((video) => (
-                <VideoCard
+            {fav
+              ? appContext.state.favoritesVideos.map((video) => (
+                  <VideoCard
                     key={video.items[0].etag}
                     id={video.items[0].id}
                     title={video.items[0].snippet.title}
                     channelTitle={video.items[0].snippet.channelTitle}
                     publishTime={video.items[0].snippet.publishedAt}
                     thumbnails={video.items[0].snippet.thumbnails}
-                    fav={true}
+                    fav
                   />
-              ))
-            :
-              relatedVideos &&
-                relatedVideos.items.filter(video => video.snippet !== undefined).map((video) => (
-                  <VideoCard
-                    key={video.etag}
-                    id={video.id.videoId}
-                    title={video.snippet ? video.snippet.title : 'Sin titulo'}
-                    channelTitle={video.snippet ? video.snippet.channelTitle : 'Sin titulo'}
-                    publishTime={video.snippet ? video.snippet.publishTime : 'Sin fecha'}
-                    thumbnails={video.snippet ? video.snippet.thumbnails : 'Sin imagen'}
-                  />
-                )) 
-            }
+                ))
+              : relatedVideos &&
+                relatedVideos.items
+                  .filter((video) => video.snippet !== undefined)
+                  .map((video) => (
+                    <VideoCard
+                      key={video.etag}
+                      id={video.id.videoId}
+                      title={video.snippet ? video.snippet.title : 'Sin titulo'}
+                      channelTitle={
+                        video.snippet ? video.snippet.channelTitle : 'Sin titulo'
+                      }
+                      publishTime={
+                        video.snippet ? video.snippet.publishTime : 'Sin fecha'
+                      }
+                      thumbnails={video.snippet ? video.snippet.thumbnails : 'Sin imagen'}
+                    />
+                  ))}
           </RelatedVideosContainer>
         )}
       </DetailsContainer>

@@ -3,7 +3,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import AuthProvider from '../../providers/Auth';
 import { lightTheme, darkTheme } from '../../utils/themes';
-import { DataProvider } from '../../providers/Context/DataContext';  
+import { DataProvider } from '../../providers/Context/DataContext';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import VideoPage from '../../pages/Video';
@@ -34,10 +34,10 @@ function App() {
                 <Route exact path="/favorites">
                   <Favorites />
                 </Route>
-                <Route exact path='/favorites/:id'>
-                  <VideoPage fav={true} />
+                <Route exact path="/favorites/:id">
+                  <VideoPage fav />
                 </Route>
-                <Route exact path='/history'>
+                <Route exact path="/history">
                   <History />
                 </Route>
                 <Route path="*">

@@ -1,36 +1,42 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Search from '../../utils/svg/Search';
 import { SearchBar } from './SearchInput.styled';
 import useDebounce from '../../utils/hooks/useDebounce';
+import { DataContext, ACTIONS } from '../../providers/Context/DataContext';
+import useYoutubeApi from '../../utils/hooks/useYoutubeApi';
 
-function SearchInput({ fetchVideos }) {
-  const [searchTerm, setSearchTerm] = useState('');
+function SearchInput() {
+  const appContext = useContext(DataContext);
   const location = useLocation();
   const history = useHistory();
+  const { fetchVideos } = useYoutubeApi();
 
   const handleChange = (e) => {
-    setSearchTerm(e.target.value);
+    appContext.dispatch({
+      type: ACTIONS.SET_SEARCH_TERM,
+      payload: e.target.value,
+    });
   };
 
   useDebounce(
     () => {
-      fetchVideos(searchTerm);
+      fetchVideos(appContext.state.searchTerm);
       if (location.pathname !== '/') {
         history.push('/');
       }
     },
-    [searchTerm],
+    [appContext.state.searchTerm],
     300
   );
 
   return (
-    <SearchBar searchTerm={searchTerm}>
+    <SearchBar searchTerm={appContext.state.searchTerm}>
       <Search />
       <input
         type="text"
         placeholder="Search"
-        value={searchTerm}
+        value={appContext.state.searchTerm}
         onChange={handleChange}
       />
     </SearchBar>

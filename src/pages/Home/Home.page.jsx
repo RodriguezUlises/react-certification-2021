@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Section, Grid } from './Home.page.styled';
-// import YoutubeMock from '../../mock/youtube-videos-mock.json';
 import VideoCard from '../../components/VideoCard';
+import { DataContext } from '../../providers/Context/DataContext';
 
-function HomePage({ videos }) {
+function HomePage() {
+  const appContext = useContext(DataContext);
   return (
     <Section>
       <Grid>
-        {videos &&
-          videos.items.map((video) => <VideoCard key={video.etag} video={video} />)}
+        {appContext.state.videos &&
+          appContext.state.videos.items.map((video) => (
+            <VideoCard
+              key={video.etag}
+              id={video.id.videoId}
+              title={video.snippet.title}
+              description={video.snippet.description}
+              thumbnails={video.snippet.thumbnails}
+            />
+          ))}
       </Grid>
     </Section>
   );

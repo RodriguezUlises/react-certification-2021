@@ -1,38 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-
+import loginApi from '../../api/login.api';
 import { useAuth } from '../../providers/Auth';
-import './Login.styles.css';
+import { LoginSection, LoginForm, FormGroup } from './Login.styled';
 
 function LoginPage() {
   const { login } = useAuth();
   const history = useHistory();
 
-  function authenticate(event) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const authenticate = async (event) => {
     event.preventDefault();
-    login();
-    history.push('/secret');
-  }
+    try {
+      const user = await loginApi(username, password);
+      login(user);
+      history.push('/');
+    } catch (err) {
+      setError('Username or password incorrect');
+    }
+  };
 
   return (
-    <section className="login">
+    <LoginSection>
       <h1>Welcome back!</h1>
-      <form onSubmit={authenticate} className="login-form">
-        <div className="form-group">
+      <LoginForm onSubmit={authenticate}>
+        <FormGroup>
           <label htmlFor="username">
             <strong>username </strong>
-            <input required type="text" id="username" />
+            <input
+              required
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </label>
-        </div>
-        <div className="form-group">
+        </FormGroup>
+        <FormGroup>
           <label htmlFor="password">
             <strong>password </strong>
-            <input required type="password" id="password" />
+            <input
+              required
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </label>
-        </div>
-        <button type="submit">login</button>
-      </form>
-    </section>
+        </FormGroup>
+        <button type="submit">Login</button>
+        <p>{error}</p>
+      </LoginForm>
+    </LoginSection>
   );
 }
 

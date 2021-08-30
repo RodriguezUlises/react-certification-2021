@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import Videocard from './Videocard.component';
 import YoutubeVideos from '../../mock/youtube-videos-mock.json';
@@ -11,7 +11,7 @@ const video = YoutubeVideos.items[0];
 describe('Videocard tests', () => {
   test('should render videocard', () => {
     render(
-      <BrowserRouter>
+      <HashRouter>
         <ThemeProvider theme={lightTheme}>
           <Videocard
             id={video.id.videoId}
@@ -20,7 +20,7 @@ describe('Videocard tests', () => {
             thumbnails={video.snippet.thumbnails}
           />
         </ThemeProvider>
-      </BrowserRouter>
+      </HashRouter>
     );
     const VideoImage = screen.getByAltText('video');
     const VideoTitle = screen.getByText(video.snippet.title);

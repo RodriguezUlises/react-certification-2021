@@ -12,10 +12,18 @@ export const Grid = styled.div`
 
 export const Section = styled.section`
   background-color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.text};
   height: 100%;
   min-height: calc(100vh - min(9vh, 55px));
+  width: 95%;
+  margin-left: 5%;
   text-align: center;
   margin-top: min(9vh, 55px);
   padding-top: 15px;
   transition: all 0.5s ease;
+
+  @media (max-width: 760px) {
+    width: 100%;
+    margin-left: 0%;
+  }
 `;

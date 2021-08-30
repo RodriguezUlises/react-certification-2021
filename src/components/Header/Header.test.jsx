@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { DataProvider } from '../../providers/Context/DataContext';
 import { lightTheme } from '../../utils/themes';
@@ -8,13 +8,13 @@ import Header from './Header.component';
 
 beforeEach(() => {
   render(
-    <BrowserRouter>
+    <HashRouter>
       <DataProvider>
         <ThemeProvider theme={lightTheme}>
           <Header />
         </ThemeProvider>
       </DataProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 });
 

@@ -5,6 +5,8 @@ export const Ico = styled(Link)`
   width: 50%;
   height: 30%;
   margin-left: 25%;
+  display: flex;
+  justify-content: center;
   svg {
     min-width: 30px;
     min-height: 30px;
@@ -23,19 +25,11 @@ export const Ico = styled(Link)`
 `;
 
 export const IcoPro = styled(Link)`
-  width: 50%;
-  height: 30%;
-  margin-left: 25%;
-  svg {
-    min-width: 30px;
-    min-height: 30px;
-  }
+  width: 70%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
 
-  &:hover {
-    svg {
-      fill: #bf616a;
-    }
-  }
   @media (min-width: 760px) {
     display: none;
   }
@@ -86,6 +80,7 @@ export const ProfilePicture = styled.div`
   cursor: pointer;
   background-color: ${(props) => props.theme.colors.text};
   border: solid 2px ${(props) => props.theme.colors.text};
+  transform: translateY(-10%);
   overflow: hidden;
   transition: all 0.5s ease;
   &::after {

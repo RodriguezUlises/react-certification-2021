@@ -11,6 +11,7 @@ import NotFound from '../../pages/NotFound';
 import Layout from '../Layout';
 import Favorites from '../../pages/Favorites';
 import History from '../../pages/History';
+import Private from '../Private';
 
 function App() {
   const [theme, setTheme] = useState(true); // true is light and false is dark
@@ -31,12 +32,12 @@ function App() {
                 <Route exact path="/video/:id">
                   <VideoPage fav={false} />
                 </Route>
-                <Route exact path="/favorites">
+                <Private exact path="/favorites">
                   <Favorites />
-                </Route>
-                <Route exact path="/favorites/:id">
+                </Private>
+                <Private exact path="/favorites/:id">
                   <VideoPage fav />
-                </Route>
+                </Private>
                 <Route exact path="/history">
                   <History />
                 </Route>
